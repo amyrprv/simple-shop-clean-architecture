@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { UserDomain } from '../core/domain/user.domain';
-import { UserMapper } from '../user.mapper';
+import { UserModel } from '../core/models/user.model';
+import { UserMapper } from './user.mapper';
 import { UserSequelizeEntity } from './user-sequelize.entity';
 import { UserRepositoryPort } from '../core/ports/user.repository.port';
 
@@ -13,23 +13,23 @@ export class UserSequelizeRepository implements UserRepositoryPort {
     private mapper: UserMapper,
   ) {}
 
-  async findOneByFilter(filter: Partial<UserDomain>): Promise<UserDomain> {
+  async findOneByFilter(filter: Partial<UserModel>): Promise<UserModel> {
     const entity = await this.userEntity.findOne({ where: filter });
-    return this.mapper.toDomain(entity);
+    return this.mapper.toModel(entity);
   }
 
-  async insert(domain: UserDomain): Promise<void> {
+  async insert(domain: UserModel): Promise<void> {
     const entity = new UserSequelizeEntity({ ...domain });
     await entity.save();
   }
-  async findAll(): Promise<UserDomain[]> {
-    const entity = await this.userEntity.findAll();
-    return this.mapper.toDomain(entity);
+  async findAll(): Promise<UserModel[]> {
+    const entities = await this.userEntity.findAll();
+    return entities.map(this.mapper.toModel)
   }
-  findOneById(id: string): Promise<UserDomain> {
+  findOneById(id: string): Promise<UserModel> {
     throw new Error('Method not implemented.');
   }
-  delete(entity: UserDomain): Promise<boolean> {
+  delete(entity: UserModel): Promise<boolean> {
     throw new Error('Method not implemented.');
   }
 }

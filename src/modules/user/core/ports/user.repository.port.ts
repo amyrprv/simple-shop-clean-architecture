@@ -1,6 +1,6 @@
 import { RepositoryPort } from '../../../../libs/ports/repository.port';
-import { UserDomain } from '../domain/user.domain';
+import { UserModel } from '../models/user.model';
 
-export abstract class UserRepositoryPort extends RepositoryPort<UserDomain> {
+export abstract class UserRepositoryPort extends RepositoryPort<UserModel> {
     
 }

@@ -1,4 +1,4 @@
-export class UserDomain {
+export class UserModel {
   firstName: string;
   lastName: string;
   password: string;
