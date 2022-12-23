@@ -1,3 +1,3 @@
-# Simple Shop
+# Simple shop clean architecture
 
->A simple E-commerce powered by Node.js
+This is a simple E-commerce powered by Node.js for my attempt to clean architecture based application.

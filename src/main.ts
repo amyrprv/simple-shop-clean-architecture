@@ -1,20 +1,12 @@
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import * as dotenv from 'dotenv' 
+dotenv.config()
+import { ServerApplication } from '@application/server.application';
 
-async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+(async (): Promise<void> => {
+  await runApplication();
+})();
 
-  const options = new DocumentBuilder().build();
-
-  const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('docs', app, document);
-
-  app.useGlobalPipes(new ValidationPipe());
-
-  app.enableShutdownHooks();
-
-  await app.listen(3000);
+async function runApplication(): Promise<void> {
+  const serverApplication: ServerApplication = ServerApplication.new();
+  await serverApplication.run();
 }
-bootstrap();
