@@ -1,12 +1,8 @@
-import * as dotenv from 'dotenv' 
-dotenv.config()
-import { ServerApplication } from '@application/server.application';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-(async (): Promise<void> => {
-  await runApplication();
-})();
-
-async function runApplication(): Promise<void> {
-  const serverApplication: ServerApplication = ServerApplication.new();
-  await serverApplication.run();
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
 }
+bootstrap();
