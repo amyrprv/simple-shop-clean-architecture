@@ -1,4 +1,4 @@
-import { Mapper } from '@domain/base/mapper.base';
+import { Mapper } from '@domain/libs/mapper.base';
 import { Product } from '@domain/entities/product.entity';
 import { ProductEntity } from '@infrastructure/sequelize/entities/product.entity';
 
