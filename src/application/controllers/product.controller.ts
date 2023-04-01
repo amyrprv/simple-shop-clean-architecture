@@ -9,4 +9,9 @@ export class ProductController {
   getProductById(@Param('id', ParseIntPipe) id: number) {
     return this.productService.getProductById(id);
   }
+
+  @Get('/')
+  getAllProdcut() {
+    return this.productService.getAllProducts();
+  }
 }

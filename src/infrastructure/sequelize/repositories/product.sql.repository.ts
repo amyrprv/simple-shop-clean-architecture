@@ -14,7 +14,7 @@ export class ProductSQLRepository implements ProductRepository {
   ) {
     this.mapper = new ProductMapper();
   }
-ç
+  ç;
   async findById(id: number): Promise<Product> {
     const entity = await this.productModel.findOne({
       where: {
@@ -23,5 +23,11 @@ export class ProductSQLRepository implements ProductRepository {
     });
 
     return this.mapper.toDomain(entity);
+  }
+
+  async find() {
+    const entities = await this.productModel.findAll();
+
+    return entities.map(this.mapper.toDomain);
   }
 }
