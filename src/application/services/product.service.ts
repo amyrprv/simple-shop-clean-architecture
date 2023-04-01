@@ -1,6 +1,6 @@
 import { ProductRepository } from '@domain/repositories/product.repository';
 import { Injectable } from '@nestjs/common';
-import { ProductNotFoundException } from '@infrastructure/exceptions/product.exceptions';
+import { ProductNotFoundException } from '@infrastructure/exceptions/product.exception';
 import { ProductDTO } from '@application/dtos/product.dto';
 
 @Injectable()

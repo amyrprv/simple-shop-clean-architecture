@@ -7,9 +7,9 @@ export interface SerializedException {
   metadata?: unknown;
 }
 
-
 export abstract class ExceptionBase extends Error {
   abstract code: string;
+  abstract httpCode: number;
 
   public readonly correlationId: string;
 
@@ -22,7 +22,6 @@ export abstract class ExceptionBase extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 
- 
   toJSON(): SerializedException {
     return {
       message: this.message,

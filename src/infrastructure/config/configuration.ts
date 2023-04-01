@@ -9,4 +9,5 @@ export default () => ({
     password: get('DB_PASSWORD').required().asString(),
     database: get('DB_NAME').required().asString(),
   },
+  jwtSecret: get('JWT_SECRET').required().asString()
 });

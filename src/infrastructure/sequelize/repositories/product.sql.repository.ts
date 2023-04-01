@@ -1,9 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Product } from '@domain/entities/product.entity';
 import { ProductRepository } from '@domain/repositories/product.repository';
 import { ProductEntity } from '@infrastructure/sequelize/entities/product.entity';
 import { ProductMapper } from '@infrastructure/sequelize/mappers/product.mapper';
-import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ProductSQLRepository implements ProductRepository {
@@ -14,7 +14,7 @@ export class ProductSQLRepository implements ProductRepository {
   ) {
     this.mapper = new ProductMapper();
   }
-  ç;
+
   async findById(id: number): Promise<Product> {
     const entity = await this.productModel.findOne({
       where: {

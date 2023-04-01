@@ -5,6 +5,8 @@ export class ProductNotFoundException extends ExceptionBase {
 
   public readonly code = 'PRODUCT.NOT_FOUND';
 
+  public readonly httpCode = 400;
+
   constructor(metadata?: unknown) {
     super(ProductNotFoundException.message, undefined, metadata);
   }
