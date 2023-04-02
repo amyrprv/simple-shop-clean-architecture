@@ -1,4 +1,5 @@
-import { Table, Column, Model } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany } from 'sequelize-typescript';
+import { OrderItemEntity } from '@infrastructure/sequelize/entities/order-item.entity';
 
 @Table({ tableName: 'Product' })
 export class ProductEntity extends Model {
@@ -10,4 +11,7 @@ export class ProductEntity extends Model {
 
   @Column
   description: string;
+
+  @HasMany(() => OrderItemEntity)
+  orderItems: OrderItemEntity[];
 }

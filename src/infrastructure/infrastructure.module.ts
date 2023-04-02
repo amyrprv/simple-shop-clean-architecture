@@ -4,13 +4,20 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProductEntity } from '@infrastructure/sequelize/entities/product.entity';
 import { UserEntity } from '@infrastructure/sequelize/entities/user.entity';
+import { OrderEntity } from '@infrastructure/sequelize/entities/order.entity';
+import { OrderItemEntity } from '@infrastructure/sequelize/entities/order-item.entity';
 import { ProductSQLRepository } from '@infrastructure/sequelize/repositories/product.sql.repository';
 import { UserSQLRepository } from '@infrastructure/sequelize/repositories/user.sql.repository';
 import { TokenAdapter } from '@infrastructure/adapters/token.adapter';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([ProductEntity, UserEntity]),
+    SequelizeModule.forFeature([
+      ProductEntity,
+      UserEntity,
+      OrderEntity,
+      OrderItemEntity,
+    ]),
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
@@ -22,7 +29,7 @@ import { TokenAdapter } from '@infrastructure/adapters/token.adapter';
         database: configService.get<string>('mysql.database'),
         synchronize: true,
         autoLoadModels: true,
-        models: [ProductEntity],
+        models: [ProductEntity, UserEntity, OrderEntity, OrderItemEntity],
       }),
       inject: [ConfigService],
     }),
